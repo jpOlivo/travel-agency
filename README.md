@@ -61,7 +61,7 @@ Use 'mvn verify' for execute the integration tests
 
 #### Running the API
 
-1. Clone the [repository]()
+1. Clone the [repository](https://github.com/jpOlivo/travel-agency)
 
 2. Execute the app through Spring Boot Maven plugin
 
