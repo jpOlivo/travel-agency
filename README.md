@@ -42,9 +42,9 @@ The following examples illustrate how to use the defined endpoints:
 
 1. Request on *recommendations* endpoint:
 
-`$ curl -X GET "http://localhost:8080/travels/v1/recommendations/Paris" -H "accept: */*"`
+`$ curl -X GET "http://localhost:8080/v1/recommendations/Paris" -H "accept: */*"`
 
-`$ curl -X GET "http://localhost:8080/travels/v1/recommendations/Roma" -H "accept: */*"`
+`$ curl -X GET "http://localhost:8080/v1/recommendations/Roma" -H "accept: */*"`
 
 #### Tests
 
