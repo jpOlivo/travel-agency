@@ -36,7 +36,7 @@ The cache mentioned on 3.2. and 3.3. allow improve the performance by reducing t
 
 #### API Rest
 
-The API documentation can be found [here](http://localhost:8080/swagger-ui.html#)
+The API documentation can be found [here](http://localhost:8080/swagger-ui.html#) (Requires that the app is up and running) 
 
 The following examples illustrate how to use the defined endpoints:
 
