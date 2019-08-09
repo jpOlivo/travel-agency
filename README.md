@@ -12,24 +12,23 @@ For further reference, please consider the following sections:
 
 ![img](https://i.imgur.com/Fh1Y6O0.png)
 
-1. Periodically, **Recommendation API** get data from **Flight Reservation API** and store it. 
+1. Periodically, **Recommendation API** get data from **Flight Reservation API** and store it ([FlightReservationService](https://github.com/jpOlivo/travel-agency/blob/master/src/main/java/com/brubank/travel/service/FlightReservationService.java))
 
 2. The data obtained from **Flight Reservation API** is persisted on a database. 
 
-3. For each request to **Recommendation API**:
+3. For each request performed on **Recommendation API**:
 
-   3.1. The data from flight reservation is querying from database
+   3.1. The data from flight reservation is querying from database 
 	 
-   3.2. The data from hotels are querying on cache. If are not present, are retrieved from **FourSquare API**. 
+   3.2. The data from hotels are querying on cache. If are not present, are retrieved from **FourSquare API** ([VenueService](https://github.com/jpOlivo/travel-agency/blob/master/src/main/java/com/brubank/travel/service/VenueService.java)) 
    
    3.3. The cache of hotels is updated 
    
-   3.4. The information of flights and hotels is bundled in a DTO that is returned to caller
-   
+   3.4. The information of flights and hotels is bundled in a [DTO](https://github.com/jpOlivo/travel-agency/blob/master/src/main/java/com/brubank/travel/dto/RecommendationDTO.java) that is returned to caller
 
-4. The cache(Caffeine) and database(H2) are in-memory implementations
+4. For simplify the tests, in-memory caches were used
 
-The points 1. and 2. allow that the flight reservations are not lose
+The points 1. and 2. allow that the flight reservations are not lost
 
 The cache mentioned on 3.2. and 3.3. allow improve the performance by reducing the data processing and fetching
 
