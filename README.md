@@ -12,7 +12,7 @@ For further reference, please consider the following sections:
 
 ![img](https://i.imgur.com/Fh1Y6O0.png)
 
-1. Periodically, **Recommendation API** get data from **Flight Reservation API** and store it ([FlightReservationService](https://github.com/jpOlivo/travel-agency/blob/master/src/main/java/com/brubank/travel/service/FlightReservationService.java))
+1. Periodically, **Recommendation API** get data from **Flight Reservation API** and store it ([FlightReservationService](https://github.com/jpOlivo/travel-agency/blob/master/src/main/java/com/brubank/service/FlightReservationService.java))
 
 2. The data obtained from **Flight Reservation API** is persisted on a database. 
 
@@ -20,11 +20,11 @@ For further reference, please consider the following sections:
 
    3.1. The data from flight reservation is querying from database 
 	 
-   3.2. The data from hotels are querying on cache. If are not present, are retrieved from **FourSquare API** ([VenueService](https://github.com/jpOlivo/travel-agency/blob/master/src/main/java/com/brubank/travel/service/VenueService.java)) 
+   3.2. The data from hotels are querying on cache. If are not present, are retrieved from **FourSquare API** ([VenueService](https://github.com/jpOlivo/travel-agency/blob/master/src/main/java/com/brubank/service/VenueService.java)) 
    
    3.3. The cache of hotels is updated 
    
-   3.4. The information of flights and hotels is bundled in a [DTO](https://github.com/jpOlivo/travel-agency/blob/master/src/main/java/com/brubank/travel/dto/RecommendationDTO.java) that is returned to caller
+   3.4. The information of flights and hotels is bundled in a [DTO](https://github.com/jpOlivo/travel-agency/blob/master/src/main/java/com/brubank/dto/RecommendationDTO.java) that is returned to caller
 
 4. For simplify the tests, in-memory caches were used
 
@@ -43,7 +43,7 @@ The following examples illustrate how to use the defined endpoints:
 
 `$ curl -X GET "http://localhost:8080/v1/recommendations/Paris" -H "accept: */*"`
 
-`$ curl -X GET "http://localhost:8080/v1/recommendations/Roma" -H "accept: */*"`
+`$ curl -X GET "http://localhost:8080/v1/recommendations/Rome" -H "accept: */*"`
 
 #### Tests
 
@@ -51,11 +51,11 @@ A set of unit and integration tests can be found under */src/test/java*
 
 Use 'mvn test' for execute the unit tests  
 
-`$ mvn test`
+`$ ./mvnw test`
 
 Use 'mvn verify' for execute the integration tests
 
-`$ mvn verify`
+`$ ./mvnw verify`
 
 
 #### Running the API

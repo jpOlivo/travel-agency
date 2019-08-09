@@ -19,7 +19,7 @@ public class SwaggerConfig {
 	@Bean
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2).select()
-				.apis(RequestHandlerSelectors.basePackage("com.brubank.travel.controller"))
+				.apis(RequestHandlerSelectors.basePackage("com.brubank.controller"))
 				.paths(PathSelectors.regex("/v1/recommendations.*")).build().apiInfo(getApiInfo())
 				.useDefaultResponseMessages(true);
 	}

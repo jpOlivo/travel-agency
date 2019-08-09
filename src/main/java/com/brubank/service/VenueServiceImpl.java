@@ -44,13 +44,16 @@ public class VenueServiceImpl implements VenueService {
 						.build(city, clientId, clientSecret))
 				.retrieve().bodyToMono(VenueSearch.class);
 
+		return Arrays.asList(getResponse(city, mono));
+	}
+
+	private Venue[] getResponse(String city, Mono<VenueSearch> mono) {
 		Venue[] venues = new Venue[] {};
 		try {
 			venues = mono.block().getResponse().getVenues();
 		} catch (Exception e) {
 			LOGGER.warn("There was not found hotels for destination: " + city);
 		}
-		
-		return Arrays.asList(venues);
+		return venues;
 	}
 }
