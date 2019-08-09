@@ -1,7 +1,7 @@
 package com.brubank.controller;
 
 import static org.hamcrest.Matchers.emptyCollectionOf;
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -31,9 +31,9 @@ public class RecommendationControllerIT {
 	private int port;
 
 	@Test
-	public void givenDestinationExisting_thenReturnsReservationsAndHotels() {
+	public void givenDestination_whenExistReservations_thenReturnsReservations() {
 		// Given
-		String destination = "Paris";
+		String destination = "Hyderabad";
 
 		// When
 		ResponseEntity<RecommendationDTO> response = restTemplate.getForEntity("/v1/recommendations/{city}",
@@ -42,15 +42,14 @@ public class RecommendationControllerIT {
 		// Then
 		assertThat(response.getStatusCode(), is(HttpStatus.OK));
 		RecommendationDTO result = response.getBody();
-		assertThat(result.getHotels().size(), is(greaterThanOrEqualTo(0)));
-		assertThat(result.getFlightReservations().size(), is(greaterThanOrEqualTo(0)));
+		assertThat(result.getFlightReservations().size(), is(greaterThan(0)));
 	}
-	
+
 	@Test
-	public void givenDestinationNonExisting_thenReturnsEmptyLists() throws InterruptedException {
+	public void givenDestination_whenExistHotels_thenReturnsHotels() {
 		// Given
-		String destination = "askpakdqzte";
-		
+		String destination = "Hyderabad";
+
 		// When
 		ResponseEntity<RecommendationDTO> response = restTemplate.getForEntity("/v1/recommendations/{city}",
 				RecommendationDTO.class, destination);
@@ -58,9 +57,37 @@ public class RecommendationControllerIT {
 		// Then
 		assertThat(response.getStatusCode(), is(HttpStatus.OK));
 		RecommendationDTO result = response.getBody();
-		assertThat(result.getHotels(), is((emptyCollectionOf(Venue.class))));
+		assertThat(result.getFlightReservations().size(), is(greaterThan(0)));
+	}
+
+	@Test
+	public void givenDestination_whenNonExistHotels_thenReturnsEmptyList() throws InterruptedException {
+		// Given
+		String destination = "asdasdkeres";
+
+		// When
+		ResponseEntity<RecommendationDTO> response = restTemplate.getForEntity("/v1/recommendations/{city}",
+				RecommendationDTO.class, destination);
+
+		// Then
+		assertThat(response.getStatusCode(), is(HttpStatus.OK));
+		RecommendationDTO result = response.getBody();
+		assertThat(result.getHotels(), is(emptyCollectionOf(Venue.class)));
+	}
+
+	@Test
+	public void givenDestination_whenNonExistReservations_thenReturnsEmptyList() throws InterruptedException {
+		// Given
+		String destination = "Buenos Aires";
+
+		// When
+		ResponseEntity<RecommendationDTO> response = restTemplate.getForEntity("/v1/recommendations/{city}",
+				RecommendationDTO.class, destination);
+
+		// Then
+		assertThat(response.getStatusCode(), is(HttpStatus.OK));
+		RecommendationDTO result = response.getBody();
 		assertThat(result.getFlightReservations(), is(emptyCollectionOf(FlightReservation.class)));
 	}
 
-	
 }
