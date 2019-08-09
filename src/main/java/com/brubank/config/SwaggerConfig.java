@@ -1,4 +1,4 @@
-package com.brubank.travel.config;
+package com.brubank.config;
 
 import java.util.Collections;
 

@@ -1,4 +1,4 @@
-package com.brubank.travel.service;
+package com.brubank.service;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.brubank.travel.domain.FlightReservation;
-import com.brubank.travel.repository.FlightReservationRepository;
+import com.brubank.domain.FlightReservation;
+import com.brubank.repository.FlightReservationRepository;
 
 import reactor.core.publisher.Flux;
 
@@ -24,8 +24,10 @@ public class FlightReservationServiceImpl implements FlightReservationService {
 	@Scheduled(fixedRate = 480000) // time in millis
 	@Override
 	public void populateFlightReservationsCache() {
-		LOGGER.info("Populating flight reservations cache...");
-
+		if(LOGGER.isInfoEnabled()) {
+			LOGGER.info("Populating flight reservations cache...");
+		}
+		
 		WebClient client = WebClient.create("https://brubank-flights.herokuapp.com");
 
 		Flux<FlightReservation> flux = client.get().uri("/flight-reservations").retrieve()

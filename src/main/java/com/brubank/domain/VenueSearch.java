@@ -1,4 +1,4 @@
-package com.brubank.travel.domain;
+package com.brubank.domain;
 
 public class VenueSearch {
 	private VenueResponse response;

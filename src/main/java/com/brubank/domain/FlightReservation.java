@@ -1,4 +1,4 @@
-package com.brubank.travel.domain;
+package com.brubank.domain;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

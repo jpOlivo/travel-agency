@@ -1,4 +1,4 @@
-package com.brubank.travel.controller;
+package com.brubank.controller;
 
 import java.util.List;
 
@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.brubank.travel.domain.FlightReservation;
-import com.brubank.travel.domain.Venue;
-import com.brubank.travel.dto.RecommendationDTO;
-import com.brubank.travel.service.FlightReservationService;
-import com.brubank.travel.service.VenueService;
+import com.brubank.domain.FlightReservation;
+import com.brubank.domain.Venue;
+import com.brubank.dto.RecommendationDTO;
+import com.brubank.service.FlightReservationService;
+import com.brubank.service.VenueService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -34,7 +34,7 @@ public class RecommendationController {
 	@GetMapping("/v1/recommendations/{city}")
 	@ApiResponses({ @ApiResponse(code = 200, message = "Success", response = RecommendationDTO.class) })
 	@ApiOperation(value = "Return a list of flight reservations order by date and a list of hotels for the city specified", response = RecommendationDTO.class)
-	public ResponseEntity<?> getHotelRecommendations(
+	public ResponseEntity<RecommendationDTO> getHotelRecommendations(
 			@ApiParam(required = true, name = "city", value = "Name of destination city") @PathVariable String city) {
 		List<FlightReservation> flightReservations = flightReservationService.getFlightReservations(city);
 		List<Venue> hotels = hotelService.findHotels(city);

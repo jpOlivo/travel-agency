@@ -1,4 +1,4 @@
-package com.brubank.travel.domain;
+package com.brubank.domain;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

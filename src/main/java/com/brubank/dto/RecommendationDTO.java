@@ -1,9 +1,9 @@
-package com.brubank.travel.dto;
+package com.brubank.dto;
 
 import java.util.List;
 
-import com.brubank.travel.domain.FlightReservation;
-import com.brubank.travel.domain.Venue;
+import com.brubank.domain.FlightReservation;
+import com.brubank.domain.Venue;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

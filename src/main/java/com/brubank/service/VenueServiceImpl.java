@@ -1,24 +1,27 @@
-package com.brubank.travel.service;
+package com.brubank.service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.brubank.travel.domain.VenueSearch;
-import com.brubank.travel.domain.Venue;
+import com.brubank.domain.Venue;
+import com.brubank.domain.VenueSearch;
 
 import reactor.core.publisher.Mono;
 
 @Service
 @CacheConfig(cacheNames = { "hotels" })
 public class VenueServiceImpl implements VenueService {
+	private static final Logger LOGGER = LoggerFactory.getLogger(VenueServiceImpl.class);
 
 	@Value("${api.foursquare.client.id}")
 	private String clientId;
@@ -41,6 +44,13 @@ public class VenueServiceImpl implements VenueService {
 						.build(city, clientId, clientSecret))
 				.retrieve().bodyToMono(VenueSearch.class);
 
-		return Arrays.asList(mono.block().getResponse().getVenues());
+		Venue[] venues = new Venue[] {};
+		try {
+			venues = mono.block().getResponse().getVenues();
+		} catch (Exception e) {
+			LOGGER.warn("There was not found hotels for destination: " + city);
+		}
+		
+		return Arrays.asList(venues);
 	}
 }

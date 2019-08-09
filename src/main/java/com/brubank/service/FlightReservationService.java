@@ -1,8 +1,8 @@
-package com.brubank.travel.service;
+package com.brubank.service;
 
 import java.util.List;
 
-import com.brubank.travel.domain.FlightReservation;
+import com.brubank.domain.FlightReservation;
 
 public interface FlightReservationService {
 	
