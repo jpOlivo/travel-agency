@@ -73,6 +73,7 @@ Of course this example just shows the prototypical implementation. When adapting
 * Use of messages brokers (ActiveMQ, RabbitMQ, Kafka, etc.) for avoid that the data provided by flight reservations API are lost. Also, this allow decouple the services. 
 * Alternatively, is possible define a new **reactive endpoint** on Flight Reservation API , of manner that the clients can subscribes at it and are notified each time that a reservation is performed 
 * Use of a logging system for recording of activity 
+* Adding an CustomGlobalExceptionHandler for manage the errors of app of manner centralized
 * Make wide use of javadoc and comments on the classes ;)
 * Add alternatives paths on the tests for achieve major coverage
 * Use of persistent caches and databases (Redis, etc.)
